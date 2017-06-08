@@ -6,7 +6,7 @@ Just because...
 This script generates random Puush URLs and checks if they are viewable/public images and opens them in the browser
 
 ## How?
-* Get yourself [Python](https://www.python.org/downloads/)
+* Get yourself [Python 3](https://www.python.org/downloads/)
 * Open the script (the script can be run with an argument for multiple links to be found, defaults to 1)
 * Wait a (long) while...
 * Check out the randomness!
