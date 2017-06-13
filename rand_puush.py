@@ -1,5 +1,7 @@
 import urllib.request, webbrowser, string, random, sys
 
+# ----- Functions -----
+
 def generate_link():
 	# Generate link with random string 
 	# https://puu.sh/[5 characters]/filename.png
@@ -31,6 +33,8 @@ def open_links(links):
     for link in links:
         webbrowser.open_new_tab(link)
     return
+
+# ----- Main -----
 
 # Check arguments
 if len(sys.argv) < 2:
