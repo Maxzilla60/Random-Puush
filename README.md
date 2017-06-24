@@ -1,22 +1,19 @@
-# Random Puush
-Opens a (or multiple) random public [Puush.me](http://puush.me) links!
+# Random Puush (Flask Version)
+This site shows a random [Puush.me](http://puush.me) link!
 Just because...
 
 ## What?
-This script generates random Puush URLs and checks if they are viewable/public images and opens them in the browser
+An AJAX call to a Python script that generates random Puush URLs and checks if they are viewable/public images.
 
 ## How?
 * Get yourself [Python 3](https://www.python.org/downloads/)
-* Open the script (the script can be run with an argument for multiple links to be found, defaults to 1)
+* Get yourself [Flask](http://flask.pocoo.org/)
+* Open commandprompt and run the script: `python rand_puush_flask.py`
+* Go to the given IP address in a brwoser
 * Wait a (long) while...
 * Check out the randomness!
 
-## Run
-`rand_puush.py` (opens 1 link)
-
-`rand_puush.py 5` (opens 5 links)
-
-## Man, this script is slow
+## Man, this is slow
 I know. :(
 
 Don't really know how to optimize it.
