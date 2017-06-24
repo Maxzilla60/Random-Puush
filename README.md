@@ -8,3 +8,9 @@ An AJAX call to a Python script that generates random Puush URLs and checks if t
 
 ## Where?
 ### **[Right here!](https://random-puush.herokuapp.com)**
+
+### It's loading forever
+I know it can load long. No idea how to optimize it. :(
+
+### The image is broken
+Click it! It might actually (for some reason) be some text instead of an image!
