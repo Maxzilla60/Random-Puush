@@ -1,4 +1,5 @@
-# Random Puush (Flask Version)
+# Random Puush
+## [Flask](https://flask.pocoo.org) Version, hosted on [Heroku](https://www.heroku.com/)
 This site shows a random [Puush.me](http://puush.me) link!
 Just because...
 
@@ -12,8 +13,3 @@ An AJAX call to a Python script that generates random Puush URLs and checks if t
 * Go to the given IP address in a brwoser
 * Wait a (long) while...
 * Check out the randomness!
-
-## Man, this is slow
-I know. :(
-
-Don't really know how to optimize it.
