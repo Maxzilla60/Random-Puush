@@ -1,1 +1,1 @@
-web: gunicorn rand_puush_flask.py:app
+web: gunicorn rand_puush_flask:app
