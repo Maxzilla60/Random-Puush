@@ -56,10 +56,8 @@ while len(links) < n:
     url = generate_link()
     # Count++
     i += 1
-    # Get request
-    req = get_request(url)
     # Check
-    html = check_link(req)
+    html = check_link(get_request(url))
     # Add
     if html != False:
         links.append(url)
