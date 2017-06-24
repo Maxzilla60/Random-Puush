@@ -1,0 +1,61 @@
+<head>
+	<meta charset="utf-8">
+	<title>Random Puush</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	
+	<script src="https://use.fontawesome.com/e0304574ea.js"></script>
+	<style>
+		* {
+			box-sizing: border-box;
+			/*border-radius: 5px;*/
+			text-align: center;
+			margin: auto;
+			/*font-family: Arial, Helvetica, sans-serif;*/
+			font-size: xx-large;
+		}
+		a {
+			color: white;
+		}
+		body {
+			background-color: black;
+			color: white;
+		}
+		footer {
+			font-size: 100%;
+			position:fixed;
+			left:0px;
+			bottom:10px;
+			height:30px;
+			width:100%;
+		}
+		#output {
+			position: relative;
+			top: 40%;
+			transform: translateY(-50%);
+		}
+	</style>
+</head>
+<body>
+	<h1>Random Puush</h1>
+	<div id="output"><i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
+	<span class="sr-only">Loading...</span></div>
+	<script type="text/javascript">
+		document.title = "Loading... - Random Puush";
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		       document.getElementById("output").innerHTML = "<a target='_blank' href='"+xhttp.responseText+"'><img src='"+xhttp.responseText+"' /></a>";
+		       $("#output").load(xhttp.responseText);
+		       document.title = "Found! - Random Puush";
+		    }
+		};
+		xhttp.open("GET", "/get", true);
+		xhttp.send();
+	</script>
+	<footer>
+		<a target="_blank" href="https://github.com/Maxzilla60/"><i class="fa fa-github" aria-hidden="true"></i></a> 
+		<a target="_blank" href="https://twitter.com/hungrymaxzilla"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+	</footer>
+</body>
