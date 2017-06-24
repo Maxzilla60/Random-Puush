@@ -2,10 +2,8 @@
 Opens a (or multiple) random public [Puush.me](http://puush.me) links!
 Just because...
 
-# Web version with [Heroku](https://www.heroku.com/)!
-[Check it out](https://random-puush.herokuapp.com)!
-
 ## What?
+[**See it in action online!**](https://random-puush.herokuapp.com)!
 This script generates random Puush URLs and checks if they are viewable/public images and opens them in the browser
 
 ## How?
