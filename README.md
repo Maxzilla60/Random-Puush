@@ -7,4 +7,4 @@ Just because...
 An AJAX call to a Python script that generates random Puush URLs and checks if they are viewable/public images.
 
 ## Where?
-[Right here!](https://random-puush.herokuapp.com)
+### **[Right here!](https://random-puush.herokuapp.com)**
