@@ -1,0 +1,1 @@
+web: gunicorn rand_puush_flask.py:app
