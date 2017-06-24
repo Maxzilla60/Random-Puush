@@ -8,17 +8,19 @@ Just because...
 This script generates random Puush URLs and checks if they are viewable/public images and opens them in the browser
 
 ## How?
+* Check it out [online](https://random-puush.herokuapp.com)
+**OR**
 * Get yourself [Python 3](https://www.python.org/downloads/)
 * Open the script (the script can be run with an argument for multiple links to be found, defaults to 1)
 * Wait a (long) while...
 * Check out the randomness!
 
-## Run
+## Running the Python Script
 `rand_puush.py` (opens 1 link)
 
 `rand_puush.py 5` (opens 5 links)
 
-## Man, this script is slow
+### Man, this script is slow
 I know. :(
 
 Don't really know how to optimize it.
