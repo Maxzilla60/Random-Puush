@@ -2,6 +2,9 @@
 Opens a (or multiple) random public [Puush.me](http://puush.me) links!
 Just because...
 
+# Web version with [Flask](http://flask.pocoo.org/)!
+Check out the [`flask-website` branch](https://gith[ub.com/Maxzilla60/Random-Puush/tree/flask-website)!
+
 ## What?
 This script generates random Puush URLs and checks if they are viewable/public images and opens them in the browser
 
