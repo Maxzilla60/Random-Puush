@@ -13,4 +13,4 @@ def get():
 	return link
 
 if __name__ == "__main__":
-    app.run(processes=5)
+    app.run(threaded=True)
