@@ -1,4 +1,4 @@
-# Random Puush
+# Random Puush (Script Version)
 Opens a (or multiple) random public [Puush.me](http://puush.me) screenshots!
 Just because...
 
