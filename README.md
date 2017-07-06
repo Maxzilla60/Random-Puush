@@ -1,5 +1,5 @@
 # Random Puush
-[Flask](https://flask.pocoo.org) Version, hosted on [Heroku](https://www.heroku.com/)
+Made with [Flask](https://flask.pocoo.org), hosted on [Heroku](https://www.heroku.com/)
 
 This site shows a random [Puush.me](http://puush.me) screenshot!
 Just because...
@@ -9,6 +9,9 @@ Just because...
 
 ## What?
 An AJAX call to a Python script that generates random Puush URLs and checks if they are viewable/public images.
+
+## Python Script
+There's also a script-version if you prefer!
 
 ### It's loading forever
 I know it can load long. No idea how to optimize it. :(
