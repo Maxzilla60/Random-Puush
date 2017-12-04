@@ -21,8 +21,3 @@ This script generates random Puush URLs and checks if they are viewable/public i
 `rand_puush.py 5` (opens 5 links, one thread per link)
 
 `rand_puush.py -1` (runs the script in endless mode, opening links as it finds them)
-
-### Man, this script is slow
-I know. :(
-
-Don't really know how to optimize it.
