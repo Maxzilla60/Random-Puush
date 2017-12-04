@@ -35,6 +35,8 @@ def open_links(links):
     return
 
 # ----- Main -----
+# Set Windows console title
+ctypes.windll.kernel32.SetConsoleTitleW("Random Puush")
 
 # Check arguments
 if len(sys.argv) < 2:
