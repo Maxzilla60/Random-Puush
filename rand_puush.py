@@ -1,74 +1,98 @@
-import urllib.request, webbrowser, string, random, sys
+import urllib.request, webbrowser, string, random, sys, ctypes
+from threading import Thread
+
+# ----- Globals -----
+
+global generatedCount  # amount of generated links
+global foundCount  # array of found links
+generatedCount = 0
+foundCount = 0
+global endless  # endless mode
+
 
 # ----- Functions -----
 
+def task():
+    global foundCount
+    global generatedCount
+    while True:
+        url = generate_link()  # Generate url
+        generatedCount += 1  # Count++
+        html = check_link(url)  # Check
+        # Add:
+        if html is not False:
+            foundCount += 1
+            print("\n" + url)
+            webbrowser.open_new_tab(url)
+        update_console(foundCount, generatedCount)
+        if endless is not True and html is not False:
+            return
+
+
 def generate_link():
-	# Generate link with random string 
-	# https://puu.sh/[5 characters]/filename.png
-    return "https://puu.sh/" + ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=5)) + "/" + "filename_doesnt_matter.png"
+    # Generate link with random string
+    # https://puu.sh/[5 characters]/filename.png
+    return "https://puu.sh/" + ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits,
+                                                      k=5)) + "/" + "filename_doesnt_matter.png"
 
-def get_request(url):
-    return urllib.request.Request(url, headers={'User-Agent':'Mozilla/5.0'})
 
-def check_link(req):
+def check_link(url):
+    # Generate request
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     try:
-    	# Fetch html from url, may throw an HTTPError (Forbidden)
+        # Fetch html from url, may throw an HTTPError (Forbidden)
         html = urllib.request.urlopen(req).read()
         # Check if it's a usable url, if so, we return it
         if 'That puush could not be found.' not in str(
                 html) and 'You do not have access to view that puush.' not in str(html):
             return html
     except urllib.error.HTTPError:
-        pass 
-    # If it wasn't a usable url, return false
+        pass
+        # If it wasn't a usable url, return false
     return False
 
+
 def update_console(found, generated):
-	# Cool dynamic display of found and generated links
-    sys.stdout.write("\r{0}".format("Found "+str(found)+" out of "+str(generated)+" links"))
+    # Cool dynamic display of found and generated foundCount
+    sys.stdout.write("\r{0}".format("Found " + str(found) + " out of " + str(generated) + " links"))
     sys.stdout.flush()
     return
 
-def open_links(links):
-    for link in links:
-        webbrowser.open_new_tab(link)
-    return
 
 # ----- Main -----
+
 # Set Windows console title
 ctypes.windll.kernel32.SetConsoleTitleW("Random Puush")
 
 # Check arguments
 if len(sys.argv) < 2:
     n = 1
-# Set amount of links to find
+# Set amount of links to find:
 else:
     try:
         n = int(sys.argv[1])
     except:
         n = 1
-        
-i = 0 # amount of generated links
-links = [] # array of found link
 
-print("Started...")
-print("Going to find "+str(n)+" link(s)...")
-while len(links) < n:
-    # Generate url
-    url = generate_link()
-    # Count++
-    i += 1
-    # Check
-    html = check_link(get_request(url))
-    # Add
-    if html != False:
-        links.append(url)
-    # Update console
-    update_console(len(links), i)
-print("\nLinks:")
-# Display all links
-for x in links:
-    print(x)
-print("Opening links...")
-open_links(links)
-input("Done! Press enter to exit.\n")
+print("-- Random Puush --")
+print("- by Maxzilla -")
+
+endless = n < 0
+if endless:
+    n = 4
+    print("Running endless mode (using 4 threads). Press Ctrl+C to terminate script...")
+else:
+    print("Going to find " + str(n) + " link(s)...")
+
+# Initialize threads:
+threads = []
+for i in range(n):
+    threads.append(Thread(target=task))
+# Start threads:
+for t in threads:
+    t.start()
+# Wait for threads:
+for t in threads:
+    t.join()
+
+input("\nDone! Press enter to exit.\n")
