@@ -7,7 +7,7 @@ This script generates random Puush URLs and checks if they are viewable/public i
 
 ## How?
 * Get yourself [Python 3](https://www.python.org/downloads/)
-* Rus the script (see **"Running the Python Script"**)
+* Run the script (see **"Running the Python Script"**)
 * Wait a (long) while...
 * Check out the randomness!
 
