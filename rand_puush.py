@@ -69,4 +69,4 @@ for x in links:
     print(x)
 print("Opening links...")
 open_links(links)
-input("Done! Press any key to exit.\n")
+input("Done! Press enter to exit.\n")
