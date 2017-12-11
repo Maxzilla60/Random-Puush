@@ -66,10 +66,12 @@ def update_console(found, generated):
 # Set Windows console title
 ctypes.windll.kernel32.SetConsoleTitleW("Random Puush")
 
-# Check arguments
+# Set defaults:
 toFindCount = 1
 threadAmount = 10
 
+# Check arguments: 
+#(amount of links & amount of threads)
 if len(sys.argv) >= 3:
     try:
         toFindCount = int(sys.argv[1])
@@ -77,16 +79,21 @@ if len(sys.argv) >= 3:
     except:
         print("Error parsing arguments")
         exit()
+#(amount of links)
 elif len(sys.argv) is 2:
     try:
         toFindCount = int(sys.argv[1])
     except:
         print("Error parsing arguments")
         exit()
+# Amount of threads validation
+if threadAmount <= 0:
+    threadAmount = 10
 
 print("-- Random Puush --")
 print("- by Maxzilla -")
 
+# Check for endless mode:
 endless = toFindCount < 0
 if endless:
     print("Running endless mode (using " + str(threadAmount) + " threads). Press Ctrl+C to terminate script...")
