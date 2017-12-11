@@ -3,6 +3,7 @@ from threading import Thread
 
 # ----- Globals -----
 
+global toFindCount
 global generatedCount  # amount of generated links
 global foundCount  # array of found links
 generatedCount = 0
@@ -13,6 +14,7 @@ global endless  # endless mode
 # ----- Functions -----
 
 def task():
+    global toFindCount
     global foundCount
     global generatedCount
     while True:
@@ -25,7 +27,7 @@ def task():
             print("\n" + url)
             webbrowser.open_new_tab(url)
         update_console(foundCount, generatedCount)
-        if endless is not True and html is not False:
+        if endless is not True and toFindCount < foundCount:
             return
 
 
@@ -65,28 +67,35 @@ def update_console(found, generated):
 ctypes.windll.kernel32.SetConsoleTitleW("Random Puush")
 
 # Check arguments
-if len(sys.argv) < 2:
-    n = 1
-# Set amount of links to find:
-else:
+toFindCount = 1
+threadAmount = 10
+
+if len(sys.argv) >= 3:
     try:
-        n = int(sys.argv[1])
+        toFindCount = int(sys.argv[1])
+        threadAmount = int(sys.argv[2])
     except:
-        n = 1
+        print("Error parsing arguments")
+        exit()
+elif len(sys.argv) is 2:
+    try:
+        toFindCount = int(sys.argv[1])
+    except:
+        print("Error parsing arguments")
+        exit()
 
 print("-- Random Puush --")
 print("- by Maxzilla -")
 
-endless = n < 0
+endless = toFindCount < 0
 if endless:
-    n = 4
-    print("Running endless mode (using 4 threads). Press Ctrl+C to terminate script...")
+    print("Running endless mode (using " + str(threadAmount) + " threads). Press Ctrl+C to terminate script...")
 else:
-    print("Going to find " + str(n) + " link(s)...")
+    print("Going to find at least " + str(toFindCount) + " link(s) using " + str(threadAmount) + " threads...")
 
 # Initialize threads:
 threads = []
-for i in range(n):
+for i in range(threadAmount):
     threads.append(Thread(target=task))
 # Start threads:
 for t in threads:
