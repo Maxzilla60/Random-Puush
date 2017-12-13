@@ -27,7 +27,7 @@ def task():
             print("\n" + url)
             webbrowser.open_new_tab(url)
         update_console(foundCount, generatedCount)
-        if endless is not True and toFindCount < foundCount:
+        if endless is not True and findCount >= toFindCount:
             return
 
 
