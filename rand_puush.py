@@ -45,8 +45,7 @@ def check_link(url):
         # Fetch html from url, may throw an HTTPError (Forbidden)
         html = urllib.request.urlopen(req).read()
         # Check if it's a usable url, if so, we return it
-        if 'That puush could not be found.' not in str(
-                html) and 'You do not have access to view that puush.' not in str(html):
+        if 'That puush could not be found.' not in str(html) and 'You do not have access to view that puush.' not in str(html):
             return html
     except urllib.error.HTTPError:
         pass
