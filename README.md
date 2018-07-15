@@ -11,10 +11,6 @@ This script generates random Puush URLs and checks if they are viewable/public i
 * Wait a (long) while...
 * Check out the randomness!
 
-**OR**
-
-* [Check it out online](https://github.com/Maxzilla60/Random-Puush/tree/flask-website)!
-
 ## Running the Python Script
 `rand_puush.py` (opens 1 link)
 
