@@ -1,8 +1,9 @@
-import urllib.request, webbrowser, string, random, sys, ctypes
+import urllib.request, webbrowser, string, random, sys, ctypes, argparse
 from threading import Thread
 
 # ----- Globals -----
 
+global args
 global toFindCount
 global generatedCount  # amount of generated links
 global foundCount  # array of found links
@@ -14,6 +15,7 @@ global endless  # endless mode
 # ----- Functions -----
 
 def task():
+    global args
     global toFindCount
     global foundCount
     global generatedCount
@@ -24,10 +26,15 @@ def task():
         # Add:
         if html is not False:
             foundCount += 1
-            print("\n" + url)
-            webbrowser.open_new_tab(url)
-        update_console(foundCount, generatedCount)
-        if endless is not True and foundCount >= toFindCount:
+            if args.output_urls_only:
+                print(url)
+            else:
+                print('\n' + url)
+            if not args.no_auto_open:
+                webbrowser.open_new_tab(url)
+        if not args.output_urls_only:
+            update_console(foundCount, generatedCount)
+        if args.endless is not True and foundCount >= toFindCount:
             return
 
 
@@ -35,7 +42,7 @@ def generate_link():
     # Generate link with random string
     # https://puu.sh/[5 characters]/filename.png
     return "https://puu.sh/" + ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits,
-                                                      k=5)) + "/" + "filename_doesnt_matter.png"
+                                                      k=5)) + "/" + "random.png"
 
 
 def check_link(url):
@@ -59,45 +66,39 @@ def update_console(found, generated):
     sys.stdout.flush()
     return
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Random Puush - Opens a (or multiple) random public Puush.me links!", epilog="https://github.com/Maxzilla60/Random-Puush")
+    parser.add_argument("-a", "--amount", type=int, help="amount of Puush links to find, default is 1", default=1)
+    parser.add_argument("-th", "--threadcount", action="store", type=int, help="amount of threads to use, default is 10", default=10)
+    parser.add_argument("-s", "--output-urls-only", action="store_true", help="print out only the found links, default is False")
+    parser.add_argument("-e", "--endless", action="store_true", help="enable endless mode, opening links as it finds them, default is False")
+    parser.add_argument("-no", "--no-auto-open", action="store_true", help="disable automatically opening found links in browser, default is False")
+    return parser.parse_args()
 
 # ----- Main -----
 
 # Set Windows console title
 ctypes.windll.kernel32.SetConsoleTitleW("Random Puush")
 
-# Set defaults:
-toFindCount = 1
-threadAmount = 10
+# Parse arguments
+args = parse_args()
+toFindCount = args.amount
+threadAmount = args.threadcount
 
-# Check arguments: 
-#(amount of links & amount of threads)
-if len(sys.argv) >= 3:
-    try:
-        toFindCount = int(sys.argv[1])
-        threadAmount = int(sys.argv[2])
-    except:
-        print("Error parsing arguments")
-        exit()
-#(amount of links)
-elif len(sys.argv) is 2:
-    try:
-        toFindCount = int(sys.argv[1])
-    except:
-        print("Error parsing arguments")
-        exit()
 # Amount of threads validation
 if threadAmount <= 0:
     threadAmount = 10
 
-print("-- Random Puush --")
-print("- by Maxzilla -")
+if not args.output_urls_only:
+    print("-- Random Puush --")
+    print("- by Maxzilla -")
 
 # Check for endless mode:
-endless = toFindCount < 0
-if endless:
-    print("Running endless mode (using " + str(threadAmount) + " threads). Press Ctrl+C to terminate script...")
-else:
-    print("Going to find at least " + str(toFindCount) + " link(s) using " + str(threadAmount) + " threads...")
+if not args.output_urls_only:
+    if args.endless:
+        print("Running endless mode (using " + str(threadAmount) + " threads). Press Ctrl+C to terminate script...")
+    else:
+        print("Going to find at least " + str(toFindCount) + " link(s) using " + str(threadAmount) + " threads...")
 
 # Initialize threads:
 threads = []
@@ -109,5 +110,3 @@ for t in threads:
 # Wait for threads:
 for t in threads:
     t.join()
-
-input("\nDone! Press enter to exit.\n")

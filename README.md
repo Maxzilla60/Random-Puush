@@ -7,20 +7,20 @@ This script generates random Puush URLs and checks if they are viewable/public i
 
 ## How?
 * Get yourself [Python 3](https://www.python.org/downloads/)
-* Run the script (see **"Running the Python Script"**)
-* Wait a (long) while...
+* Run the script (see **"Usage"**)
 * Check out the randomness!
 
-## Running the Python Script
-`rand_puush.py` (opens 1 link)
+## Usage
+```
+usage: rand_puush.py [-h] [-a AMOUNT] [-th THREADCOUNT] [-s] [-e] [-no]
 
-`rand_puush.py 5` (opens 5 links)
-
-`rand_puush.py 5 4` (opens 5 links, using 4 threads)
-
-`rand_puush.py -1` (runs the script in endless mode, opening links as it finds them)
-
-`rand_puush.py -1 4` (runs the script in endless mode, using 4 threads)
-
-## I don't want the script to open the links automatically!
-Do not fret, there is a Simple Output version which you can find on [this branch](https://github.com/Maxzilla60/Random-Puush/tree/simple-output-script). This version just prints out the links to the console.
+optional arguments:
+  -h, --help                                    show this help message and exit
+  -a AMOUNT, --amount AMOUNT                    amount of Puush links to find, default is 1
+  -th THREADCOUNT, --threadcount THREADCOUNT    amount of threads to use, default is 10
+  -s, --output-urls-only                        print out only the found links, default is False
+  -e, --endless                                 enable endless mode, opening links as it finds them,
+                                                default is False
+  -no, --no-auto-open                           disable automatically opening found links in browser,
+                                                default is False
+```
